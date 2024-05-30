@@ -6,7 +6,7 @@ import AddFormButton from "@/components/AddFormButton/AddFormButton";
 import Filters from "@/components/Filters/Filters";
 import ResumeCards from "@/components/ResumeCards/ResumeCards";
 import Paginat from "@/components/Paginat/Paginat";
-export const maxDuration = 20;
+export const maxDuration = 60;
 
 const page = async ({ searchParams }) => {
   const { userId } = auth();
