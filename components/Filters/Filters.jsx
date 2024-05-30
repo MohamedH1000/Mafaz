@@ -8,12 +8,22 @@ import { useRouter } from "next/navigation";
 const Filters = ({ resume }) => {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { nationality, setNationality, job, setJob } = useTheme();
+  const {
+    nationality,
+    setNationality,
+    job,
+    setJob,
+    contractType,
+    setContractType,
+  } = useTheme();
   const handleChangeNationality = (e) => {
     setNationality(e.target.value);
   };
   const handleChangeJob = (e) => {
     setJob(e.target.value);
+  };
+  const handleChangeContract = (e) => {
+    setContractType(e.target.value);
   };
 
   const handleFilterClick = () => {
@@ -30,6 +40,9 @@ const Filters = ({ resume }) => {
   const UniqueResumesJob = [...new Set(resume?.map((res) => res.job))];
   const UniqueResumesNationality = [
     ...new Set(resume?.map((res) => res.nationality)),
+  ];
+  const UniqueContractNationality = [
+    ...new Set(resume?.map((res) => res.contractType)),
   ];
   // console.log("uniques resume jobs", UniqueResumesJob);
   // console.log("uniques resume Nationality", UniqueResumesNationality);
@@ -63,6 +76,23 @@ const Filters = ({ resume }) => {
           onChange={handleChangeJob}
         >
           {UniqueResumesJob.map((res, i) => (
+            <MenuItem value={res} key={i}>
+              {res}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl>
+        <InputLabel id="demo-simple-select-label">نوع العقد</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          className="w-[150px] max-sm:w-[70px]"
+          value={contractType}
+          label="نوع العقد"
+          onChange={handleChangeContract}
+        >
+          {UniqueContractNationality.map((res, i) => (
             <MenuItem value={res} key={i}>
               {res}
             </MenuItem>

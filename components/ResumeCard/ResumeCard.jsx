@@ -63,6 +63,7 @@ const ResumeCard = ({ resume, userId }) => {
       setFormData({
         nationality: resume?.nationality,
         job: resume?.job,
+        contractType: resume?.contractType,
         selectedFile: resume?.selectedFile,
       });
       setType("Edit");

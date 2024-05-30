@@ -128,6 +128,29 @@ const AddForm = () => {
                 </MenuItem>
               </Select>
             </FormControl>
+            <FormControl>
+              <InputLabel id="demo-simple-select-label">نوع العقد</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                className="w-[150px]"
+                value={formData.contractType}
+                label="المهنة"
+                onChange={(e) =>
+                  setFormData({ ...formData, contractType: e.target.value })
+                }
+              >
+                <MenuItem value={"استقدام"} key={"استقدام"}>
+                  استقدام
+                </MenuItem>
+                <MenuItem value={"نقل خدمات"} key={"نقل خدمات"}>
+                  نقل خدمات
+                </MenuItem>
+                <MenuItem value={"إيجار"} key={"إيجار"}>
+                  إيجار
+                </MenuItem>
+              </Select>
+            </FormControl>
           </div>
           <div>
             <p className="text-right">الرجاء قم برفع صورة السيرة الذاتية</p>

@@ -10,12 +10,14 @@ export function ThemeProvider({ children }) {
   const [mode, setMode] = useState("");
   const [nationality, setNationality] = useState("");
   const [job, setJob] = useState("");
+  const [contractType, setContractType] = useState("");
   const [type, setType] = useState("");
   const [currentId, setCurrentId] = useState("");
   const [formData, setFormData] = useState({
     nationality: "",
     job: "",
     selectedFile: "",
+    contractType: "",
     path: pathname,
   });
 
@@ -52,6 +54,8 @@ export function ThemeProvider({ children }) {
         setNationality,
         job,
         setJob,
+        contractType,
+        setContractType,
       }}
     >
       {children}

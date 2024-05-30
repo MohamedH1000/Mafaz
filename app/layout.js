@@ -12,7 +12,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
-      <link rel="icon" href="./favicon.ico" sizes="any" />
+      <head>
+        <link rel="icon" href="/assets/icon.png" sizes="any" />
+      </head>
       <body className={Noto.className}>
         <ClerkProvider
           appearance={{

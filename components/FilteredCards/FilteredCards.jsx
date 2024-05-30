@@ -4,20 +4,27 @@ import ResumeCard from "../ResumeCard/ResumeCard";
 import { useTheme } from "@/context/ThemeProvider";
 
 const FilteredCards = ({ resumes, userId }) => {
-  const { nationality, job } = useTheme();
+  const { nationality, job, contractType } = useTheme();
   const FilteredResumes = resumes?.filter((resume) => {
     const matchesNationality = nationality
       ? resume.nationality === nationality
       : false;
     const matchesJob = job ? resume.job === job : false;
+    const matchesContract = contractType
+      ? resume.contractType === contractType
+      : false;
     const matchesJobAndNationality =
-      job && nationality
-        ? resume.job && resume.nationality === job && nationality
+      job && nationality && contractType
+        ? resume.job &&
+          resume.nationality &&
+          resume.contractType === job &&
+          nationality &&
+          contractType
         : false;
     if (matchesJobAndNationality) {
       return matchesJobAndNationality;
-    } else if (matchesNationality || matchesJob) {
-      return matchesNationality || matchesJob;
+    } else if (matchesNationality || matchesJob || matchesContract) {
+      return matchesNationality || matchesJob || matchesContract;
     } else {
       return false;
     }

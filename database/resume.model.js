@@ -9,6 +9,10 @@ const ResumeSchema = new Schema({
     type: String,
     required: true,
   },
+  contractType: {
+    type: String,
+    required: true,
+  },
   selectedFile: {
     type: String,
     required: true,
