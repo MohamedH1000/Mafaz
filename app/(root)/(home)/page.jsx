@@ -10,12 +10,27 @@ export const maxDuration = 20;
 
 const page = async ({ searchParams }) => {
   const { userId } = auth();
-  const resumes = await getResumes({
-    page: searchParams?.page ? +searchParams.page : 1,
-  });
-  const Allresumes = await getAllResumes({});
-  const parsedResumes = JSON.parse(JSON.stringify(resumes));
-  const parsedAllResumes = JSON.parse(JSON.stringify(Allresumes));
+  let resumes;
+  try {
+    resumes = await getResumes({
+      page: searchParams?.page ? +searchParams.page : 1,
+    });
+  } catch (error) {
+    console.error("Error fetching resumes:", error);
+    resumes = []; // or handle appropriately
+  }
+
+  let allResumes;
+  try {
+    allResumes = await getAllResumes({});
+  } catch (error) {
+    console.error("Error fetching all resumes:", error);
+    allResumes = []; // or handle appropriately
+  }
+  const parsedResumes = resumes ? JSON.parse(JSON.stringify(resumes)) : [];
+  const parsedAllResumes = allResumes
+    ? JSON.parse(JSON.stringify(allResumes))
+    : [];
   return (
     <div>
       <AddFormButton userId={userId} />
