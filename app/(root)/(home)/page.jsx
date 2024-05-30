@@ -12,7 +12,7 @@ const page = async ({ searchParams }) => {
   const resumes = await getResumes({
     page: searchParams?.page ? +searchParams.page : 1,
   });
-  const Allresumes = await getResumes({});
+  const Allresumes = await getAllResumes({});
   const parsedResumes = JSON.parse(JSON.stringify(resumes));
   const parsedAllResumes = JSON.parse(JSON.stringify(Allresumes));
   return (

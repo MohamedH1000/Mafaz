@@ -1,7 +1,7 @@
 import React from "react";
-import { getAllResumes, getResumes } from "@/lib/action/resume.action";
 import { auth } from "@clerk/nextjs/server";
 import { Button } from "@/components/ui/button";
+import { getAllResumes } from "@/lib/action/resume.action";
 import Link from "next/link";
 import FilteredCards from "@/components/FilteredCards/FilteredCards";
 

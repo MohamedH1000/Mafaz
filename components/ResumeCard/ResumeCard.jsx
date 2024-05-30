@@ -43,13 +43,13 @@ const ResumeCard = ({ resume, userId }) => {
       await deleteResume({ productId: resume._id, path: path });
       toast({
         description: "تم حذف السيرة الذاتية بنجاح",
-        className: "text-[blue] font-bold",
+        className: "text-[blue] font-bold bg-white",
       });
     } catch (error) {
       console.log(error);
       toast({
         description: "حصل خطا اثناء الحذف",
-        className: "text-[blue] font-bold",
+        className: "text-[blue] font-bold bg-white",
       });
     } finally {
       setIsSubmitting(false);

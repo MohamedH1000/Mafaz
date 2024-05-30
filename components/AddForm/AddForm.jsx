@@ -31,21 +31,21 @@ const AddForm = () => {
         router.push("/");
         toast({
           description: "تم تعديل السيرة الذاتية بنجاح",
-          className: "text-[blue] font-bold",
+          className: "text-[blue] font-bold bg-white",
         });
       } else {
         await createResume(formData);
         router.push("/");
         toast({
           description: "تم اضافة السيرة الذاتية بنجاح",
-          className: "text-[blue] font-bold",
+          className: "text-[blue] font-bold bg-white",
         });
       }
     } catch (error) {
       console.log(error);
       toast({
         description: "حدث خطأ , يرجى المحاولة مرة اخرى",
-        className: "text-[blue] font-bold",
+        className: "text-[blue] font-bold bg-white",
       });
     } finally {
       setIsSubmitting(false);
@@ -141,7 +141,7 @@ const AddForm = () => {
             />
           </div>
           <Button
-            className="bg-[#2e2ee3] hover:bg-[#2e2ee3] hover:opacity-80"
+            className="bg-[#2e2ee3] hover:bg-[#2e2ee3] hover:opacity-80 text-white"
             type="submit"
             disabled={isSubmitting ? true : false || !canSave ? true : false}
           >
@@ -154,7 +154,7 @@ const AddForm = () => {
             )}
           </Button>
           <Button
-            className="bg-[red] hover:bg-[#e33c3c] hover:opacity-80"
+            className="bg-[red] hover:bg-[#e33c3c] hover:opacity-80 text-white"
             onClick={clear}
             disabled={isSubmitting ? true : false}
           >
