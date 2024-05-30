@@ -7,6 +7,7 @@ import Filters from "@/components/Filters/Filters";
 import ResumeCards from "@/components/ResumeCards/ResumeCards";
 import Paginat from "@/components/Paginat/Paginat";
 
+export const maxDuration = 20;
 const page = async ({ searchParams }) => {
   const { userId } = auth();
   const resumes = await getResumes({
