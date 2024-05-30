@@ -3,10 +3,13 @@ import Image from "next/image";
 import React from "react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Link from "next/link";
+// import { auth } from "@clerk/nextjs/server";
 
 // import { Button } from "@/components/ui/button";
 import LocaleLang from "../LocalLang/LocalLang";
-const Navbar = ({ userId }) => {
+const Navbar = () => {
+  // const { userId } = auth();
+
   return (
     <div className="flex flex-col">
       <div className="max-md:hidden">

@@ -1,17 +1,15 @@
 import Navbar from "@/components/NavBar/Navbar";
 import { Toaster } from "@/components/ui/toaster";
 import React from "react";
-import { auth } from "@clerk/nextjs/server";
 import Footer from "@/components/Footer/Footer";
 import Fab from "@mui/material/Fab";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import Link from "next/link";
 
 const Layout = ({ children }) => {
-  const { userId } = auth();
   return (
     <main className="relative">
-      <Navbar userId={userId} />
+      <Navbar />
       <Link href={"https://wa.me/+966554311658"} target="_blank">
         <div className="fixed bottom-20 left-10 z-50">
           {" "}
