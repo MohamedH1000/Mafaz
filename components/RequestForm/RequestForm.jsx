@@ -21,27 +21,27 @@ const RequestForm = ({ id }) => {
 
   const handleRequest = () => {
     const url =
-      "https://wa.me/+966566768581" +
+      "https://wa.me/+966554311658" +
       "?text=" +
-      "*الاسم :*" +
+      "الاسم :" +
       requestData.name +
       "%0a" +
-      "*الرقم :*" +
+      "الرقم :" +
       requestData.phone +
       "%0a" +
-      "*الايميل :*" +
+      "الايميل :" +
       requestData.email +
       "%0a" +
-      "*مدينة العميل :*" +
+      "مدينة العميل :" +
       requestData.city +
       "%0a" +
-      "*نوع السكن :*" +
+      "نوع السكن :" +
       requestData.accomType +
       "%0a" +
-      "*عدد افراد العائلة :*" +
+      "عدد افراد العائلة :" +
       requestData.noFamily +
       "%0a" +
-      "*ملاحظات:*" +
+      "ملاحظات:" +
       requestData.notes +
       "%0a" +
       `هذا رابط الموظف المطلوب : https://mafaz.vercel.app/client/${id}`;
