@@ -37,13 +37,13 @@ const Filters = ({ resume }) => {
     }
   };
 
-  const UniqueResumesJob = [...new Set(resume?.map((res) => res.job))];
-  const UniqueResumesNationality = [
-    ...new Set(resume?.map((res) => res.nationality)),
-  ];
-  const UniqueContractNationality = [
-    ...new Set(resume?.map((res) => res.contractType)),
-  ];
+  // const UniqueResumesJob = [...new Set(resume?.map((res) => res.job))];
+  // const UniqueResumesNationality = [
+  //   ...new Set(resume?.map((res) => res.nationality)),
+  // ];
+  // const UniqueContractNationality = [
+  //   ...new Set(resume?.map((res) => res.contractType)),
+  // ];
   // console.log("uniques resume jobs", UniqueResumesJob);
   // console.log("uniques resume Nationality", UniqueResumesNationality);
   return (
@@ -58,11 +58,29 @@ const Filters = ({ resume }) => {
           label="الجنسية"
           onChange={handleChangeNationality}
         >
-          {UniqueResumesNationality.map((res, i) => (
+          {/* {UniqueResumesNationality.map((res, i) => (
             <MenuItem value={res} key={i}>
               {res}
             </MenuItem>
-          ))}
+          ))} */}
+          <MenuItem value={"الفلبين"} key={"الفلبين"}>
+            الفلبين
+          </MenuItem>
+          <MenuItem value={"اثيوبيا"} key={"اثيوبيا"}>
+            اثيوبيا
+          </MenuItem>
+          <MenuItem value={"اوغندا"} key={"اوغندا"}>
+            اوغندا
+          </MenuItem>
+          <MenuItem value={"سريلانكا"} key={"سريلانكا"}>
+            سريلانكا
+          </MenuItem>
+          <MenuItem value={"كينيا"} key={"كينيا"}>
+            كينيا
+          </MenuItem>
+          <MenuItem value={"بنجلاديش"} key={"بنجلاديش"}>
+            بنجلاديش
+          </MenuItem>
         </Select>
       </FormControl>
       <FormControl>
@@ -75,11 +93,23 @@ const Filters = ({ resume }) => {
           label="المهنة"
           onChange={handleChangeJob}
         >
-          {UniqueResumesJob.map((res, i) => (
+          {/* {UniqueResumesJob.map((res, i) => (
             <MenuItem value={res} key={i}>
               {res}
             </MenuItem>
-          ))}
+          ))} */}
+          <MenuItem value={"عاملات منزليات"} key={"عاملات منزليات"}>
+            عاملات منزليات
+          </MenuItem>
+          <MenuItem value={"سائقين"} key={"سائقين"}>
+            سائقين
+          </MenuItem>
+          <MenuItem
+            value={"متخصصات في خدمة رعاية كبار السن"}
+            key={"متخصصات في خدمة رعاية كبار السن"}
+          >
+            متخصصات في خدمة رعاية كبار السن
+          </MenuItem>
         </Select>
       </FormControl>
       <FormControl>
@@ -92,11 +122,20 @@ const Filters = ({ resume }) => {
           label="نوع العقد"
           onChange={handleChangeContract}
         >
-          {UniqueContractNationality.map((res, i) => (
+          {/* {UniqueContractNationality.map((res, i) => (
             <MenuItem value={res} key={i}>
               {res}
             </MenuItem>
-          ))}
+          ))} */}
+          <MenuItem value={"استقدام"} key={"استقدام"}>
+            استقدام
+          </MenuItem>
+          <MenuItem value={"نقل خدمات"} key={"نقل خدمات"}>
+            نقل خدمات
+          </MenuItem>
+          <MenuItem value={"إيجار"} key={"إيجار"}>
+            إيجار
+          </MenuItem>
         </Select>
       </FormControl>
 
