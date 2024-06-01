@@ -23,6 +23,8 @@ const RequestForm = ({ id }) => {
     const url =
       "https://wa.me/+966554311658" +
       "?text=" +
+      "تم تعبئة البيانات التالية من خلال رابط اختيار العاملة المنزلية" +
+      "%0a" +
       "الاسم :" +
       requestData.name +
       "%0a" +
