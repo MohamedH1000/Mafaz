@@ -1,9 +1,18 @@
 "use client";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useTheme } from "@/context/ThemeProvider";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const Filters = ({ resume }) => {
   const router = useRouter();
@@ -16,14 +25,14 @@ const Filters = ({ resume }) => {
     contractType,
     setContractType,
   } = useTheme();
-  const handleChangeNationality = (e) => {
-    setNationality(e.target.value);
+  const handleChangeNationality = (value) => {
+    setNationality(value);
   };
-  const handleChangeJob = (e) => {
-    setJob(e.target.value);
+  const handleChangeJob = (value) => {
+    setJob(value);
   };
-  const handleChangeContract = (e) => {
-    setContractType(e.target.value);
+  const handleChangeContract = (value) => {
+    setContractType(value);
   };
 
   const handleFilterClick = () => {
@@ -48,101 +57,54 @@ const Filters = ({ resume }) => {
   // console.log("uniques resume Nationality", UniqueResumesNationality);
   return (
     <div className="flex justify-center items-center gap-5 mt-10 ">
-      <FormControl>
-        <InputLabel id="demo-simple-select-label">الجنسية</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          className="w-[150px] max-sm:w-[70px]"
-          value={nationality}
-          label="الجنسية"
-          onChange={handleChangeNationality}
-        >
-          {/* {UniqueResumesNationality.map((res, i) => (
-            <MenuItem value={res} key={i}>
-              {res}
-            </MenuItem>
-          ))} */}
-          <MenuItem value={"الفلبين"} key={"الفلبين"}>
-            الفلبين
-          </MenuItem>
-          <MenuItem value={"اثيوبيا"} key={"اثيوبيا"}>
-            اثيوبيا
-          </MenuItem>
-          <MenuItem value={"اوغندا"} key={"اوغندا"}>
-            اوغندا
-          </MenuItem>
-          <MenuItem value={"سريلانكا"} key={"سريلانكا"}>
-            سريلانكا
-          </MenuItem>
-          <MenuItem value={"كينيا"} key={"كينيا"}>
-            كينيا
-          </MenuItem>
-          <MenuItem value={"بنجلاديش"} key={"بنجلاديش"}>
-            بنجلاديش
-          </MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl>
-        <InputLabel id="demo-simple-select-label">المهنة</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          className="w-[150px] max-sm:w-[70px]"
-          value={job}
-          label="المهنة"
-          onChange={handleChangeJob}
-        >
-          {/* {UniqueResumesJob.map((res, i) => (
-            <MenuItem value={res} key={i}>
-              {res}
-            </MenuItem>
-          ))} */}
-          <MenuItem value={"عاملات منزليات"} key={"عاملات منزليات"}>
-            عاملات منزليات
-          </MenuItem>
-          <MenuItem value={"سائقين"} key={"سائقين"}>
-            سائقين
-          </MenuItem>
-          <MenuItem
-            value={"متخصصات في خدمة رعاية كبار السن"}
-            key={"متخصصات في خدمة رعاية كبار السن"}
-          >
-            متخصصات في خدمة رعاية كبار السن
-          </MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl>
-        <InputLabel id="demo-simple-select-label">نوع العقد</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          className="w-[150px] max-sm:w-[70px]"
-          value={contractType}
-          label="نوع العقد"
-          onChange={handleChangeContract}
-        >
-          {/* {UniqueContractNationality.map((res, i) => (
-            <MenuItem value={res} key={i}>
-              {res}
-            </MenuItem>
-          ))} */}
-          <MenuItem value={"استقدام"} key={"استقدام"}>
-            استقدام
-          </MenuItem>
-          <MenuItem value={"نقل خدمات"} key={"نقل خدمات"}>
-            نقل خدمات
-          </MenuItem>
-          <MenuItem value={"إيجار"} key={"إيجار"}>
-            إيجار
-          </MenuItem>
-        </Select>
-      </FormControl>
-
+      <Select dir="rtl" onValueChange={handleChangeNationality}>
+        <SelectTrigger className="w-[150px] max-sm:w-[70px]">
+          <SelectValue placeholder="الجنسية" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>الجنسية</SelectLabel>
+            <SelectItem value="الفلبين">الفلبين</SelectItem>
+            <SelectItem value="اثيوبيا">اثيوبيا</SelectItem>
+            <SelectItem value="اوغندا">اوغندا</SelectItem>
+            <SelectItem value="سريلانكا">سريلانكا</SelectItem>
+            <SelectItem value="كينيا">كينيا</SelectItem>
+            <SelectItem value="بنجلاديش">بنجلاديش</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+      <Select dir="rtl" onValueChange={handleChangeJob}>
+        <SelectTrigger className="w-[150px] max-sm:w-[70px]">
+          <SelectValue placeholder="المهنة" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>المهنة</SelectLabel>
+            <SelectItem value="عاملات منزليات">عاملات منزليات</SelectItem>
+            <SelectItem value="سائقين">سائقين</SelectItem>
+            <SelectItem value="متخصصات في خدمة رعاية كبار السن">
+              متخصصات في خدمة رعاية كبار السن
+            </SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+      <Select dir="rtl" onValueChange={handleChangeContract}>
+        <SelectTrigger className="w-[150px] max-sm:w-[70px]">
+          <SelectValue placeholder="نوع العقد" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>نوع العقد</SelectLabel>
+            <SelectItem value="استقدام">استقدام</SelectItem>
+            <SelectItem value="نقل خدمات">نقل خدمات</SelectItem>
+            <SelectItem value="إيجار">إيجار</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
       <Button
         className={` text-white bg-[#2e2ee3]
          hover:bg-[#2e2ee3] hover:opacity-80 
-         w-[70px] h-[50px] max-md:w-[150px] max-sm:w-[70px] ${
+         w-[70px] h-[40px] max-md:w-[150px] max-sm:w-[70px] ${
            isSubmitting ? "text-[10px]" : "font-bold"
          }`}
         onClick={handleFilterClick}

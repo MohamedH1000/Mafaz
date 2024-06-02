@@ -1,13 +1,17 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
 import {
-  FormControl,
-  InputLabel,
-  MenuItem,
   Select,
-  TextField,
-} from "@mui/material";
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 const RequestForm = ({ id }) => {
   const [requestData, setRequestData] = useState({
     name: "",
@@ -18,6 +22,7 @@ const RequestForm = ({ id }) => {
     noFamily: "",
     notes: "",
   });
+  console.log(requestData);
 
   const handleRequest = () => {
     const url =
@@ -53,24 +58,22 @@ const RequestForm = ({ id }) => {
   return (
     <form
       action=""
-      className="flex flex-col gap-4 border-2 border-[blue] w-[60%]  rounded-lg p-10 max-md:p-3 max-md:w-[90%]"
+      className="flex flex-col gap-4 border-[2px] border-[#bab8b8] w-[60%]  rounded-lg p-10 max-md:p-3 max-md:w-[90%]"
     >
       <h1 className="text-3xl font-bold text-[blue]">البيانات</h1>
       <div className="flex flex-col gap-10">
         <div className="flex justify-center items-center gap-8 max-md:flex-col">
-          <TextField
-            label="الاسم"
-            variant="outlined"
-            fullWidth
+          <Input
+            placeholder="الاسم"
+            className="w-full"
             value={requestData.name}
             onChange={(e) =>
               setRequestData({ ...requestData, name: e.target.value })
             }
           />
-          <TextField
-            label="رقم الجوال"
-            variant="outlined"
-            fullWidth
+          <Input
+            placeholder="رقم الجوال"
+            className="w-full"
             value={requestData.phone}
             onChange={(e) =>
               setRequestData({ ...requestData, phone: e.target.value })
@@ -78,19 +81,17 @@ const RequestForm = ({ id }) => {
           />
         </div>
         <div className="flex justify-center items-center gap-8 max-md:flex-col">
-          <TextField
-            label="البريد الالكتروني"
-            variant="outlined"
-            fullWidth
+          <Input
+            placeholder="البريد الالكتروني"
+            className="w-full"
             value={requestData.email}
             onChange={(e) =>
               setRequestData({ ...requestData, email: e.target.value })
             }
           />
-          <TextField
-            label="مدينة العميل"
-            variant="outlined"
-            fullWidth
+          <Input
+            placeholder="مدينة العميل"
+            className="w-full"
             value={requestData.city}
             onChange={(e) =>
               setRequestData({ ...requestData, city: e.target.value })
@@ -98,34 +99,30 @@ const RequestForm = ({ id }) => {
           />
         </div>
         <div className="flex justify-center items-center gap-8 max-md:flex-col">
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">نوع السكن</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              // className="w-full"
-              fullWidth
-              value={requestData.accomType}
-              // label="نوع السكن"
-              onChange={(e) =>
-                setRequestData({ ...requestData, accomType: e.target.value })
-              }
-            >
-              <MenuItem value={"شقة"} key={"شقة"}>
-                شقة
-              </MenuItem>
-              <MenuItem value={"فيلا"} key={"فيلا"}>
-                فيلا
-              </MenuItem>
-              <MenuItem value={"عدد ادوار المنزل"} key={"عدد ادوار المنزل"}>
-                عدد ادوار المنزل
-              </MenuItem>
-            </Select>
-          </FormControl>{" "}
-          <TextField
-            label="عدد افراد الاسرة"
-            variant="outlined"
-            fullWidth
+          <Select
+            dir="rtl"
+            onValueChange={(value) =>
+              setRequestData({
+                ...requestData,
+                accomType: value,
+              })
+            }
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="نوع السكن" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>نوع السكن</SelectLabel>
+                <SelectItem value="شقة">شقة</SelectItem>
+                <SelectItem value="فيلا">فيلا</SelectItem>
+                <SelectItem value="دور">دور</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <Input
+            placeholder="عدد افراد الاسرة"
+            className="w-full"
             value={requestData.noFamily}
             onChange={(e) =>
               setRequestData({ ...requestData, noFamily: e.target.value })

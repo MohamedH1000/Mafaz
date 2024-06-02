@@ -1,13 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
-  FormControl,
-  InputLabel,
-  MenuItem,
   Select,
-  TextField,
-} from "@mui/material";
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import Paper from "@mui/material/Paper";
 import FileBase64 from "react-file-base64";
 import { createResume, EditResume } from "@/lib/action/resume.action";
@@ -21,6 +24,7 @@ const AddForm = () => {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { formData, setFormData, type, currentId } = useTheme();
+  console.log(formData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,7 +57,12 @@ const AddForm = () => {
   };
   const clear = (e) => {
     e.preventDefault();
-    setFormData({ nationality: "", job: "", selectedFile: "" });
+    setFormData({
+      nationality: "",
+      job: "",
+      contractType: "",
+      selectedFile: "",
+    });
   };
 
   const canSave = [
@@ -70,87 +79,69 @@ const AddForm = () => {
             {type === "Edit" ? "عدل السيرة الذاتية" : "اضافة سيرة ذاتية"}
           </h1>
           <div className="flex max-md:flex-col gap-5">
-            <FormControl>
-              <InputLabel id="demo-simple-select-label">الجنسية</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                className="w-[150px]"
-                value={formData.nationality}
-                label="الجنسية"
-                onChange={(e) =>
-                  setFormData({ ...formData, nationality: e.target.value })
-                }
-              >
-                <MenuItem value={"الفلبين"} key={"الفلبين"}>
-                  الفلبين
-                </MenuItem>
-                <MenuItem value={"اثيوبيا"} key={"اثيوبيا"}>
-                  اثيوبيا
-                </MenuItem>
-                <MenuItem value={"اوغندا"} key={"اوغندا"}>
-                  اوغندا
-                </MenuItem>
-                <MenuItem value={"سريلانكا"} key={"سريلانكا"}>
-                  سريلانكا
-                </MenuItem>
-                <MenuItem value={"كينيا"} key={"كينيا"}>
-                  كينيا
-                </MenuItem>
-                <MenuItem value={"بنجلاديش"} key={"بنجلاديش"}>
-                  بنجلاديش
-                </MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl>
-              <InputLabel id="demo-simple-select-label">المهنة</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                className="w-[150px]"
-                value={formData.job}
-                label="المهنة"
-                onChange={(e) =>
-                  setFormData({ ...formData, job: e.target.value })
-                }
-              >
-                <MenuItem value={"عاملات منزليات"} key={"عاملات منزليات"}>
-                  عاملات منزليات
-                </MenuItem>
-                <MenuItem value={"سائقين"} key={"سائقين"}>
-                  سائقين
-                </MenuItem>
-                <MenuItem
-                  value={"متخصصات في خدمة رعاية كبار السن"}
-                  key={"متخصصات في خدمة رعاية كبار السن"}
-                >
-                  متخصصات في خدمة رعاية كبار السن
-                </MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl>
-              <InputLabel id="demo-simple-select-label">نوع العقد</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                className="w-[150px]"
-                value={formData.contractType}
-                label="المهنة"
-                onChange={(e) =>
-                  setFormData({ ...formData, contractType: e.target.value })
-                }
-              >
-                <MenuItem value={"استقدام"} key={"استقدام"}>
-                  استقدام
-                </MenuItem>
-                <MenuItem value={"نقل خدمات"} key={"نقل خدمات"}>
-                  نقل خدمات
-                </MenuItem>
-                <MenuItem value={"إيجار"} key={"إيجار"}>
-                  إيجار
-                </MenuItem>
-              </Select>
-            </FormControl>
+            <Select
+              dir="rtl"
+              defaultValue={formData.nationality}
+              onValueChange={(value) =>
+                setFormData({ ...formData, nationality: value })
+              }
+            >
+              <SelectTrigger className="w-[150px] max-md:mx-auto">
+                <SelectValue placeholder="الجنسية" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>الجنسية</SelectLabel>
+                  <SelectItem value="الفلبين">الفلبين</SelectItem>
+                  <SelectItem value="اثيوبيا">اثيوبيا</SelectItem>
+                  <SelectItem value="اوغندا">اوغندا</SelectItem>
+                  <SelectItem value="سريلانكا">سريلانكا</SelectItem>
+                  <SelectItem value="كينيا">كينيا</SelectItem>
+                  <SelectItem value="بنجلاديش">بنجلاديش</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+
+            <Select
+              dir="rtl"
+              defaultValue={formData.job}
+              onValueChange={(value) =>
+                setFormData({ ...formData, job: value })
+              }
+            >
+              <SelectTrigger className="w-[150px] max-md:mx-auto">
+                <SelectValue placeholder="المهنة" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>المهنة</SelectLabel>
+                  <SelectItem value="عاملات منزليات">عاملات منزليات</SelectItem>
+                  <SelectItem value="سائقين">سائقين</SelectItem>
+                  <SelectItem value="متخصصات في خدمة رعاية كبار السن">
+                    متخصصات في خدمة رعاية كبار السن
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            <Select
+              dir="rtl"
+              defaultValue={formData.contractType}
+              onValueChange={(value) =>
+                setFormData({ ...formData, contractType: value })
+              }
+            >
+              <SelectTrigger className="w-[150px] max-md:mx-auto">
+                <SelectValue placeholder="نوع العقد" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>نوع العقد</SelectLabel>
+                  <SelectItem value="استقدام">استقدام</SelectItem>
+                  <SelectItem value="نقل خدمات">نقل خدمات</SelectItem>
+                  <SelectItem value="إيجار">إيجار</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
           <div>
             <p className="text-right">الرجاء قم برفع صورة السيرة الذاتية</p>
