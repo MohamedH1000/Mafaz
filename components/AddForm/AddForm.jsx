@@ -24,7 +24,6 @@ const AddForm = () => {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { formData, setFormData, type, currentId } = useTheme();
-  console.log(formData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

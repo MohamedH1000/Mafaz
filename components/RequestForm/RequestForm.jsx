@@ -22,7 +22,6 @@ const RequestForm = ({ id }) => {
     noFamily: "",
     notes: "",
   });
-  console.log(requestData);
 
   const handleRequest = () => {
     const url =
