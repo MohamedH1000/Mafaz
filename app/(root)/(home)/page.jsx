@@ -36,7 +36,11 @@ const page = async ({ searchParams }) => {
       <AddFormButton userId={userId} />
       <Filters resume={parsedAllResumes} />
       <ResumeCards resumes={parsedResumes} userId={userId} />
-      <Paginat resumes={parsedAllResumes} />
+      {parsedAllResumes.length < 8 ? (
+        ""
+      ) : (
+        <Paginat resumes={parsedAllResumes} />
+      )}
     </div>
   );
 };

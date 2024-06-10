@@ -58,6 +58,7 @@ const RequestForm = ({ id }) => {
     <form
       action=""
       className="flex flex-col gap-4 border-[2px] border-[#bab8b8] w-[60%]  rounded-lg p-10 max-md:p-3 max-md:w-[90%]"
+      onSubmit={handleRequest}
     >
       <h1 className="text-3xl font-bold text-[blue]">البيانات</h1>
       <div className="flex flex-col gap-10">
@@ -141,7 +142,7 @@ const RequestForm = ({ id }) => {
         <div className="flex justify-end ">
           <Button
             className="flex justify-center items-center gap-8 w-[50%] max-md:w-[100%] bg-[#2e2ee3] hover:bg-[#2e2ee3] hover:opacity-80 text-white"
-            onClick={handleRequest}
+            type="submit"
           >
             ارسال طلبك
           </Button>
