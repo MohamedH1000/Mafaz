@@ -6,7 +6,6 @@ import AddFormButton from "@/components/AddFormButton/AddFormButton";
 import Filters from "@/components/Filters/Filters";
 import ResumeCards from "@/components/ResumeCards/ResumeCards";
 import Paginat from "@/components/Paginat/Paginat";
-export const maxDuration = 20;
 
 const page = async ({ searchParams }) => {
   const { userId } = auth();
@@ -36,11 +35,11 @@ const page = async ({ searchParams }) => {
       <AddFormButton userId={userId} />
       <Filters resume={parsedAllResumes} />
       <ResumeCards resumes={parsedResumes} userId={userId} />
-      {parsedAllResumes.length < 8 ? (
+      {/* {parsedAllResumes.length < 8 ? (
         ""
-      ) : (
-        <Paginat resumes={parsedAllResumes} />
-      )}
+      ) : ( */}
+      <Paginat resumes={parsedAllResumes} />
+      {/* )} */}
     </div>
   );
 };
