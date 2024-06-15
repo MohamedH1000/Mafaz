@@ -1,7 +1,7 @@
 import React from "react";
 import { auth } from "@clerk/nextjs/server";
 
-import { getAllResumes, getResumes } from "@/lib/action/resume.action";
+import { getResumes } from "@/lib/action/resume.action";
 import AddFormButton from "@/components/AddFormButton/AddFormButton";
 import Filters from "@/components/Filters/Filters";
 import ResumeCards from "@/components/ResumeCards/ResumeCards";
@@ -16,30 +16,22 @@ const page = async ({ searchParams }) => {
     });
   } catch (error) {
     console.error("Error fetching resumes:", error);
-    resumes = []; // or handle appropriately
+    resumes = [];
   }
 
-  let allResumes;
-  try {
-    allResumes = await getAllResumes({});
-  } catch (error) {
-    console.error("Error fetching all resumes:", error);
-    allResumes = []; // or handle appropriately
-  }
-  const parsedResumes = resumes ? JSON.parse(JSON.stringify(resumes)) : [];
-  const parsedAllResumes = allResumes
-    ? JSON.parse(JSON.stringify(allResumes))
+  const parsedResumes = resumes
+    ? JSON.parse(JSON.stringify(resumes.resume))
     : [];
   return (
     <div>
       <AddFormButton userId={userId} />
-      <Filters resume={parsedAllResumes} />
+      <Filters resume={parsedResumes} />
       <ResumeCards resumes={parsedResumes} userId={userId} />
-      {/* {parsedAllResumes.length < 8 ? (
-        ""
-      ) : ( */}
-      <Paginat resumes={parsedAllResumes} />
-      {/* )} */}
+      <Paginat
+        resumes={parsedResumes}
+        isNext={resumes?.isNext}
+        totalResumes={resumes?.totalResumes}
+      />
     </div>
   );
 };

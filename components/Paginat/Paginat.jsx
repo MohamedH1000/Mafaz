@@ -14,15 +14,14 @@ import { useSearchParams } from "next/navigation";
 import { formUrlQuery } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
-const Paginat = ({ resumes }) => {
+const Paginat = ({ isNext, totalResumes }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [page, setPage] = useState(1);
   const handleChange = (event, value) => {
     setPage(value);
   };
-  const TotalNumber = resumes.length;
-  const pageSize = 9;
+  const pageSize = 1;
   useEffect(() => {
     const newUrl = formUrlQuery({
       params: searchParams.toString(),
@@ -31,10 +30,11 @@ const Paginat = ({ resumes }) => {
     });
     router.push(newUrl);
   }, [page]);
+  if (!isNext && page === 1) return null;
   return (
     <div className="flex justify-center items-center p-4" dir="ltr">
       <Pagination
-        count={Math.ceil(TotalNumber / pageSize)}
+        count={Math.ceil(totalResumes / pageSize)}
         shape="rounded"
         page={page}
         onChange={handleChange}

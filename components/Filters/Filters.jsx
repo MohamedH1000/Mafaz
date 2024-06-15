@@ -1,9 +1,8 @@
 "use client";
 import { useTheme } from "@/context/ThemeProvider";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
-
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   Select,
   SelectContent,
@@ -13,10 +12,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { formUrlQuery } from "@/lib/utils";
 
 const Filters = ({ resume }) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isUrlUpdated, setIsUrlUpdated] = useState(true);
   const {
     nationality,
     setNationality,
@@ -27,25 +29,55 @@ const Filters = ({ resume }) => {
   } = useTheme();
   const handleChangeNationality = (value) => {
     setNationality(value);
+    const newUrl = formUrlQuery({
+      params: searchParams.toString(),
+      key: "nationalityfilter",
+      value,
+    });
+    router.push(newUrl, { scroll: false });
+    setIsUrlUpdated(false);
   };
   const handleChangeJob = (value) => {
     setJob(value);
+    const newUrl = formUrlQuery({
+      params: searchParams.toString(),
+      key: "jobfilter",
+      value,
+    });
+    router.push(newUrl, { scroll: false });
+    setIsUrlUpdated(false);
   };
   const handleChangeContract = (value) => {
     setContractType(value);
+    const newUrl = formUrlQuery({
+      params: searchParams.toString(),
+      key: "contractfilter",
+      value,
+    });
+    router.push(newUrl, { scroll: false });
+    setIsUrlUpdated(false);
   };
 
   const handleFilterClick = () => {
     setIsSubmitting(true);
+    const newUrl = formUrlQuery({
+      params: searchParams.toString(),
+    });
     try {
-      router.push("/filteresults");
+      router.push(`/filteresults/${newUrl}`);
     } catch (error) {
       console.log(error);
     } finally {
       setIsSubmitting(true);
     }
   };
-
+  useEffect(() => {
+    // This useEffect will trigger whenever the URL changes
+    const handleRouteChange = () => {
+      setIsUrlUpdated(true);
+    };
+    handleRouteChange();
+  }, [searchParams]);
   // const UniqueResumesJob = [...new Set(resume?.map((res) => res.job))];
   // const UniqueResumesNationality = [
   //   ...new Set(resume?.map((res) => res.nationality)),
@@ -57,7 +89,11 @@ const Filters = ({ resume }) => {
   // console.log("uniques resume Nationality", UniqueResumesNationality);
   return (
     <div className="flex justify-center items-center gap-5 mt-10 ">
-      <Select dir="rtl" onValueChange={handleChangeNationality}>
+      <Select
+        dir="rtl"
+        onValueChange={handleChangeNationality}
+        disabled={!isUrlUpdated}
+      >
         <SelectTrigger className="w-[150px] max-sm:w-[70px]">
           <SelectValue placeholder="الجنسية" />
         </SelectTrigger>
@@ -73,7 +109,11 @@ const Filters = ({ resume }) => {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Select dir="rtl" onValueChange={handleChangeJob}>
+      <Select
+        dir="rtl"
+        onValueChange={handleChangeJob}
+        disabled={!isUrlUpdated}
+      >
         <SelectTrigger className="w-[150px] max-sm:w-[70px]">
           <SelectValue placeholder="المهنة" />
         </SelectTrigger>
@@ -88,7 +128,11 @@ const Filters = ({ resume }) => {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <Select dir="rtl" onValueChange={handleChangeContract}>
+      <Select
+        dir="rtl"
+        onValueChange={handleChangeContract}
+        disabled={!isUrlUpdated}
+      >
         <SelectTrigger className="w-[150px] max-sm:w-[70px]">
           <SelectValue placeholder="نوع العقد" />
         </SelectTrigger>
@@ -108,7 +152,7 @@ const Filters = ({ resume }) => {
            isSubmitting ? "text-[10px]" : "font-bold"
          }`}
         onClick={handleFilterClick}
-        disabled={isSubmitting ? true : false}
+        disabled={isSubmitting || !isUrlUpdated ? true : false}
       >
         {isSubmitting ? "جاري البحث" : "بحث"}
       </Button>
