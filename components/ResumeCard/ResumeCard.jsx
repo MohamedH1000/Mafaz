@@ -10,6 +10,7 @@ import { useToast } from "../ui/use-toast";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/context/ThemeProvider";
+import Image from "next/image";
 import {
   Dialog,
   DialogActions,
@@ -75,11 +76,18 @@ const ResumeCard = ({ resume, userId }) => {
   };
   return (
     <Card className="w-[300px] rounded-md p-2 relative">
-      <CardMedia
-        component="img"
+      {/* <CardMedia
+        component="Image"
         height="130"
         image={resume.selectedFile}
         alt="Resume Image"
+      /> */}
+      <Image
+        src={resume.selectedFile}
+        alt="Resume Image"
+        width={130}
+        height={130}
+        style={{ width: "100%", height: "auto" }}
       />
       {userId && (
         <MoreVertIcon
