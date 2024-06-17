@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
+// import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
 import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";

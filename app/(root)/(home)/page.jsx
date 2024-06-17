@@ -1,11 +1,20 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import { auth } from "@clerk/nextjs/server";
+const AddFormButton = dynamic(() =>
+  import("@/components/AddFormButton/AddFormButton")
+);
+const Filters = dynamic(() => import("@/components/Filters/Filters"));
+const ResumeCards = dynamic(() =>
+  import("@/components/ResumeCards/ResumeCards")
+);
+const Paginat = dynamic(() => import("@/components/Paginat/Paginat"));
 
 import { getResumes } from "@/lib/action/resume.action";
-import AddFormButton from "@/components/AddFormButton/AddFormButton";
-import Filters from "@/components/Filters/Filters";
-import ResumeCards from "@/components/ResumeCards/ResumeCards";
-import Paginat from "@/components/Paginat/Paginat";
+// import AddFormButton from "@/components/AddFormButton/AddFormButton";
+// import Filters from "@/components/Filters/Filters";
+// import ResumeCards from "@/components/ResumeCards/ResumeCards";
+// import Paginat from "@/components/Paginat/Paginat";
 
 const page = async ({ searchParams }) => {
   const { userId } = auth();
