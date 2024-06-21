@@ -4,7 +4,7 @@ import React from "react";
 
 const page = ({ params }) => {
   const { id } = params;
-  let isLoading = true;
+  // let isLoading = true;
 
   // if (isLoading) return <Loading />;
   return (

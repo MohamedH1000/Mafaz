@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Card } from "@mui/material";
 import React from "react";
 
-const loading = async () => {
+const Loading = async () => {
   return (
     <>
       <div className="flex justify-center items-center gap-5 mt-10 ">
@@ -45,4 +45,4 @@ const loading = async () => {
   );
 };
 
-export default loading;
+export default Loading;
