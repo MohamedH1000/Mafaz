@@ -1,13 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import Card from "@mui/material/Card";
+import dynamic from "next/dynamic";
+const Card = dynamic(() => import("@mui/material/Card"), { ssr: false });
 // import CardMedia from "@mui/material/CardMedia";
-import CardActions from "@mui/material/CardActions";
+const CardActions = dynamic(() => import("@mui/material/CardActions"));
 import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
 import { deleteResume } from "@/lib/action/resume.action";
 import { useToast } from "../ui/use-toast";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+const MoreVertIcon = dynamic(() => import("@mui/icons-material/MoreVert"));
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/context/ThemeProvider";
 import Image from "next/image";

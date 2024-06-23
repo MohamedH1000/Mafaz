@@ -1,6 +1,9 @@
 "use client";
 import React from "react";
-import ResumeCard from "../ResumeCard/ResumeCard";
+import dynamic from "next/dynamic";
+const ResumeCard = dynamic(() => import("../ResumeCard/ResumeCard"), {
+  ssr: false,
+});
 
 const ResumeCards = ({ resumes, userId }) => {
   return (
